@@ -62,7 +62,7 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
         { name: 'Storage__Provider',      value: 'azure' }
         { name: 'Storage__AccountName',   value: storageAccountName }
         { name: 'Storage__ContainerName', value: 'photos' }
-        { name: 'KeyVault__VaultUrl',     value: 'https://${keyVaultName}.vault.azure.net/' }
+        { name: 'KeyVault__VaultUrl',     value: 'https://${keyVaultName}.${environment().suffixes.keyvaultDns}/' }
       ]
     }
   }
