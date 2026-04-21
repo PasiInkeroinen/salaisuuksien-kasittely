@@ -23,17 +23,13 @@ public static class DependencyInjection
         services.AddScoped<IAlbumRepository, AlbumRepository>();
         services.AddScoped<IPhotoRepository, PhotoRepository>();
 
-        // TILAPÄINEN rekisteröinti — sovellus käynnistyy, mutta kuvien lataus ei vielä toimi.
-        // TODO (Vaihe 5): Toteuta LocalStorageService (palauttaa NotImplementedException tähän asti).
-        // TODO (Vaihe 6): Korvaa tämä rivi ehdollisella logiikalla käyttäen StorageOptions-vakioita:
-        //
-        //   var provider = configuration[$"{StorageOptions.SectionName}:Provider"]
-        //       ?? StorageOptions.LocalProvider;
-        //   if (provider == StorageOptions.AzureProvider)
-        //       services.AddScoped<IStorageService, AzureBlobStorageService>();
-        //   else
-        //       services.AddScoped<IStorageService, LocalStorageService>();
-        services.AddScoped<IStorageService, LocalStorageService>();
+        var provider = configuration[$"{StorageOptions.SectionName}:Provider"]
+            ?? StorageOptions.LocalProvider;
+
+        if (provider == StorageOptions.AzureProvider)
+            services.AddScoped<IStorageService, AzureBlobStorageService>();
+        else
+            services.AddScoped<IStorageService, LocalStorageService>();
 
         return services;
     }

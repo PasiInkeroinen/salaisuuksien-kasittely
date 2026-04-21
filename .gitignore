@@ -54,6 +54,10 @@ Desktop.ini
 
 # Publish output
 publish/
+StarterCode/GalleryApi/GalleryApi.WebApi/wwwroot/uploads/
 StarterCode/GalleryApi/GalleryApi.WebApi/gallery.db
 StarterCode/GalleryApi/GalleryApi.WebApi/gallery.db-shm
 StarterCode/GalleryApi/GalleryApi.WebApi/gallery.db-wal
+
+*.zip
+out/
